@@ -1,0 +1,30 @@
+<h1>Friends Picker</h1>
+
+<button (click)="login()" [hidden]="loggedIn">Login</button>
+<button (click)="logout()" [hidden]="!loggedIn">Logout</button>
+
+<div *ngIf="loggedIn">
+    <div *ngIf="friends">
+        <h2>Friends</h2>
+        <ul>
+            <div *ngFor="let u of friends">
+                <li> {{ u.displayName }}</li>
+                <button (click)="removeFriend(u)">Remove friend</button>
+            </div>
+
+        </ul>
+    </div>
+
+    <h2>Search users</h2>
+
+    <input type="text" [(ngModel)]="userNameFilter">
+    <button (click)="getUsers()">Search</button>
+    <div *ngIf="users">
+        <ul>
+            <div *ngFor="let u of users">
+                <li> {{ u.displayName }}</li>
+                <button (click)="addFriend(u)">Add friend</button>
+            </div>
+        </ul>
+    </div>
+</div>
